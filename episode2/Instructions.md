@@ -126,6 +126,10 @@ The following steps outline creating a unique SSH keypair for you to use in this
 
 - The page will download the file *"[Your-Name]-Rekognition.pem"* to the local drive. Follow the browser instructions to save the file to the default download location.
 
+- Use the chmod command to make sure that your private key file isn't publicly viewable. For example, if the name of your private key file is *"cpetters-Rekognition.pem"*, use the following command:
+
+ `chmod 400 /path/cpetters-Rekognition.pem`
+
 - Remember the full path to the file .pem file you just downloaded. You will use the Key Pair you just created to manage your EC2 instances for the rest of the lab
 
 ## 3. Launch the stack
@@ -175,11 +179,13 @@ Follow the steps below to run python application on EC2 instance that will start
 
 - Note the name of the EC2 Instance and capture the Public IP address
 
-- Open an SSH connection to your instance (if using Windows you will need putty & puttygen to connect)
+- Open an SSH connection to your instance (if using Windows you will need [putty & puttygen](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) to connect)
+
+  `ssh -i keyfile.pem ec2-user@ec2-ip-ip-ip-ip.eu-west-1.compute.amazonaws.com`
 
 - Run the following command to set the default region in the EC2 instance CLI to Ireland
 
- **export AWS\_DEFAULT\_REGION=eu-west-1**
+ `export AWS_DEFAULT_REGION=eu-west-1`
 
 - Go to /home/ec2-user/rekognition-workshop directory and run the python source code to start streaming twitter data.
 
@@ -193,9 +199,9 @@ Follow the steps below to run python application on EC2 instance that will start
 
 - Navigate to the **S3** console at https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#.
 
-- Select the bucket starting with "celebrityrek-twitter"
+- Select the bucket starting with "*uname*rekworkshop-twitter"
 
-![](media/s3twitter01.png)
+![](media/s3twitter001.png)
 
 - You should see folder structure created by Amazon Kinesis Firehose and JSON metadata for incoming tweets.
 
@@ -207,9 +213,9 @@ Follow the steps below to run python application on EC2 instance that will start
 
  - Navigate to the **S3** console at https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#.
 
- - Select the bucket starting with "celebrityrek-rekognition".
+ - Select the bucket starting with "*uname*-*accountid*".
 
-![](media/s301.png)
+![](media/s3images003.png)
 
  - Go to images folder in the bucket and you should images extracted from incoming Tweets.
 

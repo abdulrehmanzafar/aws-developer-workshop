@@ -8,12 +8,13 @@ import os
 
 print('Loading function')
 this_region = os.environ['AWS_DEFAULT_REGION'];
+DDBTableName = os.environ['TableName']
 print("region: " + this_region)
 
 sns = boto3.client('sns')
 s3 = boto3.client('s3')
 ddb = boto3.resource('dynamodb')
-table = ddb.Table('rekognitionTable')
+table = ddb.Table(DDBTableName)
 # Using the table that was created from CloudFormation
 rekognition = boto3.client('rekognition', this_region)
 

@@ -484,7 +484,7 @@
       "Type" : "AWS::Lambda::Function",
       "Properties" : {
         "Code": {
-          "S3Bucket" : "serverlessbytes" ,
+          "S3Bucket" : "cpbootstrap-eu-west-1" ,
           "S3Key": "compareFaces.zip"
         },
         "Description": "Compare faces from twitter feed using Rekognition",
@@ -497,7 +497,8 @@
           "Variables": {
             "S3RekBucket": {  "Fn::Join": [ "-", [{ "Ref": "AWS::StackName" }, {"Ref": "AWS::AccountId"}, {"Ref": "AWS::Region"} ]] },
             "RefPhoto": { "Ref": "PersonPhotoFilename" },
-            "SNSArn" : { "Ref" : "FaceMatchNotifyTopic"}
+            "SNSArn" : { "Ref" : "FaceMatchNotifyTopic"},
+            "TableName" : { "Ref": "TwitterDDBTable" }
           }
         },
         "MemorySize" : 1280
