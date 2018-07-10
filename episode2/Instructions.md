@@ -256,6 +256,12 @@ Follow the steps below to run python application on EC2 instance that will start
 
 - In few seconds you should be notified about successful match.
 
+## Additional challenge
+
+- If time permits, use code skeleton provided [with this code](scripts/compareFaces.py) to detect labels within images to update index in DynamoDB.
+
+- Extend use case to find products matching the dominant labels (e.g. toaster, microwave, banana, etc.) to [reply on Twitter](https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/post-statuses-update.html) with deals available in the local area. 
+
 ## Clean up
 
 - Once complete with the workshop you can delete the stack to clean up the environment and stop all services.
