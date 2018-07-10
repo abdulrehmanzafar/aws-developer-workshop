@@ -1,5 +1,7 @@
 
-![](media/aws.png)
+# AWS Rekognition Workshop
+
+This is a modified version of the Rekognition workshop described [here](https://github.com/aws-samples/aws-developer-workshop/blob/master/episode2/Instructions.md).
 
 
 - [Overview](Instructions.md#overview)
@@ -24,8 +26,6 @@
 
 - [Upload reference image for favorite celebrity](Instructions.md#8-upload-reference-image-for-favorite-celebrity)
 
-- [Setup Cloud9 IDE](Instructions.md#9-setup-cloud9-ide)
-
 - [Code to compare incoming images with reference image](Instructions.md#10-code-to-compare-incoming-images-with-the-reference-image-exercise)
 
 - [Validate face comparison](Instructions.md#11-validate-face-comparison)
@@ -39,7 +39,6 @@ In this workshop, we will build a solution that listens to Twitter feed and capt
 
 In this workshop, we will use following AWS services:
 
-- [AWS Cloud9](https://aws.amazon.com/cloud9/) is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal.
 - [AWS Lambda](https://aws.amazon.com/lambda/) lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge when your code is not running.
 - [Amazon Kinesis Data Firehose](https://aws.amazon.com/kinesis/) is the easiest way to capture, transform, and load data streams into AWS data stores for near real-time analytics with existing business intelligence tools.
 - [Amazon S3](https://aws.amazon.com/s3/) is object storage built to store and retrieve any amount of data from anywhere – web sites and mobile apps, corporate applications, and data from IoT sensors or devices.
@@ -135,18 +134,19 @@ This automated AWS CloudFormation template create various components of the appl
 
 - Log in to the **AWS Management Console** and ensure you select the **Ireland** AWS region in the top right region selection.
 
-- [Click here to launch CloudFormation Template ](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?stackName=celebrityrek&templateURL=https://s3-eu-west-1.amazonaws.com/serverlessbytes/RekognitionWorkshopCFN.json)
+- [Click here to launch CloudFormation Template ](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?stackName=unamerekworkshop&templateURL=https://s3.eu-central-1.amazonaws.com/public.cpaws/immersionday/RekognitionWorkshop.json)
 
 - Complete fields on the **Create stack** page.
-- Keep Stack name short as Cloudformation template uses this name as prefix to create various resources.
+- **Keep Stack name short** as Cloudformation template uses this name as prefix to create various resources.
 
 ![](media/cf1.png)
 ![](media/cf2.png)
-![](media/cf3.png)
+
+
 
 | **Parameter** | **Default** | **Description** |
 | --------------| :----------: | :-------------- |
-|**StackName**  |  celebrityrek | Name of the Stack to launch **Must all be lowercase letters.**|
+|**StackName**  |  *uname*rekworkshop | Name of the Stack to launch, replace *uname* with a unique name **Must all be lowercase letters.**|
 | EmailAddress | *Requires input* | Email address to use during workshop so you can receive emails notifications.|
 | InstanceType | *t2.Micro* | Select your instance type. Recommend t2.Micro |
 | KeyName | *Requires input* | SSH key for Ireland region to use during the workshop. Without this key you will not be able to connect to your instance.|
@@ -218,7 +218,7 @@ Follow the steps below to run python application on EC2 instance that will start
 
 ## 8. Upload reference image for favorite celebrity
 
-- Navigate to the **S3** console at https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#.
+- Navigate to the **Amazon S3** console at [https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#](https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#).
 
 - Select the bucket starting with "celebrityrek-rekognition".
 
@@ -228,41 +228,21 @@ Follow the steps below to run python application on EC2 instance that will start
 
  ![](media/s302.png)
 
-## 9. Setup Cloud9 IDE
+## 9. Code to compare incoming images with the reference image (Exercise)
 
-- Go to Cloud9 in AWS Console at https://eu-west-1.console.aws.amazon.com/cloud9/home?region=eu-west-1# and click on Create environment.
+- Navigate to the **AWS Lambda** console at [https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions](https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions).
 
-- Enter a name and description and click on Next step.
+- Open the Lambda function starting with "*uname*rekworkshop-RekognitionLambdaFunction".
 
-![](media/cloud901.png)
-
-- Leave default options on the configure settings screen and click Next step.
-
-![](media/cloud902.png)
-
-- On the Review screen, review all the settings and click Create environment.
-
-![](media/cloud903.png)
-
-- In few seconds you will be redirected to your Cloud9 IDE in the browser.
-
-![](media/cloud904.png)
-
-## 10. Code to compare incoming images with the reference image (Exercise)
-
-- In your Cloud9 IDE, click on AWS Resources and import Lambda function starting with "celebrityrek-Rekognition".
-
-![](media/c9lambda01.png)
+![](media/lambdaedit01.png)
 
 - This Lambda function was created using CloudFormation stack and will be invoked when an image from a tweet is stored on S3 bucket.
 
-![](media/c9lambda02.png)
-
 - Update lambda function [with this code](scripts/compareFaces.py) so it compares images from incoming tweets with the reference image. We will use Rekognition API to achieve face comparison. Review more details about the face comparison API at http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html#Rekognition.Client.compare_faces
 
-- Join us at Twitch to live edit this Lambda function and compare incoming images from tweets with the reference images.
+- Save the lambda function. 
 
-## 11. Validate face comparison
+## 10. Validate face comparison
 
 - Log into your Twitter account in your mobile phone or browser.
 
@@ -274,6 +254,6 @@ Follow the steps below to run python application on EC2 instance that will start
 
 - Once complete with the workshop you can delete the stack to clean up the environment and stop all services.
 
-- You will first have to delete the two S3 buckets created for this lab. Go to the AWS S3 console and view the contents of each bucket, both starting with "twtrrekog". Select each bucket and select **Delete bucket**.
+- You will first have to delete the two S3 buckets created for this lab. Go to the AWS S3 console and view the contents of each bucket, both starting with "*uname*rekworkshop". Select each bucket and select **Delete bucket**.
 
-- Go to CloudFormation and delete the rekognition-workshop stack by placing a check mark by it and selecting the delete action. This will remove the resources created in the workshop.
+- Go to CloudFormation and delete the *uname*rekworkshop stack by placing a check mark by it and selecting the delete action. This will remove the resources created in the workshop.
