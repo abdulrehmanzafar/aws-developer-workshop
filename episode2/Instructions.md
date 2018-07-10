@@ -26,9 +26,9 @@ This is a modified version of the Rekognition workshop described [here](https://
 
 - [Upload reference image for favorite celebrity](Instructions.md#8-upload-reference-image-for-favorite-celebrity)
 
-- [Code to compare incoming images with reference image](Instructions.md#10-code-to-compare-incoming-images-with-the-reference-image-exercise)
+- [Code to compare incoming images with reference image](Instructions.md#9-code-to-compare-incoming-images-with-the-reference-image-exercise)
 
-- [Validate face comparison](Instructions.md#11-validate-face-comparison)
+- [Validate face comparison](Instructions.md#10-validate-face-comparison)
 
 - [Clean up](Instructions.md#clean-up)
 
