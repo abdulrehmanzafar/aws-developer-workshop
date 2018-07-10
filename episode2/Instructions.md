@@ -138,7 +138,7 @@ This automated AWS CloudFormation template create various components of the appl
 
 - Log in to the **AWS Management Console** and ensure you select the **Ireland** AWS region in the top right region selection.
 
-- [Click here to launch CloudFormation Template ](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?stackName=unamerekworkshop&templateURL=https://s3.eu-central-1.amazonaws.com/public.cpaws/immersionday/RekognitionWorkshop.json)
+- [Click here to launch CloudFormation Template ](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?stackName=unamerekworkshop&templateURL=https://s3-eu-west-1.amazonaws.com/cpbootstrap-eu-west-1/immersionday/RekognitionWorkshop1549.json)
 
 - Complete fields on the **Create stack** page.
 - **Keep Stack name short** as Cloudformation template uses this name as prefix to create various resources.
@@ -226,9 +226,9 @@ Follow the steps below to run python application on EC2 instance that will start
 
 - Navigate to the **Amazon S3** console at [https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#](https://s3.console.aws.amazon.com/s3/home?region=eu-west-1#).
 
-- Select the bucket starting with "celebrityrek-rekognition".
+- Select the bucket starting with "*uname*rekworkshop-*accountid*".
 
-![](media/s301.png)
+![](media/s3images003.png)
 
  - Upload your reference favorite celebrity image to the base folder in this bucket. Ensure the name matches the reference name used when creating the CloudFormation stack.
 

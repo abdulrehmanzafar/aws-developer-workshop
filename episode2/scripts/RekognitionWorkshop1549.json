@@ -485,7 +485,7 @@
       "Properties" : {
         "Code": {
           "S3Bucket" : "cpbootstrap-eu-west-1" ,
-          "S3Key": "compareFaces.zip"
+          "S3Key": "immersionday/compareFaces.zip"
         },
         "Description": "Compare faces from twitter feed using Rekognition",
 
